@@ -110,6 +110,24 @@ namespace ESP8266_IoT {
     //% block="connect Wifi SSID = %ssid|KEY = %pw"
     //% ssid.defl=your_ssid
     //% pw.defl=your_pwd weight=95
+
+    // Don't mind me...
+    export function connectEAPWifi(ssid: string, method: int, identity: string,  user: string, pw: string, method: int, security: int, timeout: int) {
+        registerMsgHandler("WIFI DISCONNECT", () => wifi_connected = false)
+        registerMsgHandler("WIFI GOT IP", () => wifi_connected = true)
+        let retryCount = 3;
+        while (true) {
+            sendAT(`AT+CWJEAP="${ssid}","${method}", "${identity}","${user}","${pw}", "${security}", "${timeout}"`) // connect to Wifi router
+            // From ESP32 list of AT Commands, but should apply.. 
+            // AT+CWJEAP=<"ssid">,<method>,<"identity">,<"username">,<"password">,<security>[,<jeap_timeout>]
+            pauseUntil(() => wifi_connected, 3500)
+            if (wifi_connected == false && --retryCount > 0) {
+                resetEsp8266()
+            } else {
+                break
+            }
+        };
+    }
     export function connectWifi(ssid: string, pw: string) {
         registerMsgHandler("WIFI DISCONNECT", () => wifi_connected = false)
         registerMsgHandler("WIFI GOT IP", () => wifi_connected = true)
@@ -487,3 +505,4 @@ namespace ESP8266_IoT {
     }
 
 }
+
