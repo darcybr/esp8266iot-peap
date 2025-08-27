@@ -107,7 +107,7 @@ namespace ESP8266_IoT {
     /**
      * connect to EAP Wifi 
      */
-    //% block="connect EAP Wifi SSID = %ssid|KEY = %pw"
+    //% block="connect EAP Wifi SSID = %ssid|KEY = %pw"| METHOD = %method | IDENTITY = %identity | USER = %user | SECURITY = %security | TIMEOUT = %timeout
     //% ssid.defl=StudentBYOD
     //% method.defl=number
     //% identity.defl=blank
@@ -522,6 +522,7 @@ namespace ESP8266_IoT {
     }
 
 }
+
 
 
 
