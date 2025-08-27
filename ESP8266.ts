@@ -112,7 +112,7 @@ namespace ESP8266_IoT {
     //% pw.defl=your_pwd weight=95
 
     // Don't mind me...
-    export function connectEAPWifi(ssid: string, method: int, identity: string,  user: string, pw: string, method: int, security: int, timeout: int) {
+    export function connectEAPWifi(ssid: string, method: int, identity: string,  user: string, pw: string, security: int, timeout: int) {
         registerMsgHandler("WIFI DISCONNECT", () => wifi_connected = false)
         registerMsgHandler("WIFI GOT IP", () => wifi_connected = true)
         let retryCount = 3;
@@ -505,4 +505,5 @@ namespace ESP8266_IoT {
     }
 
 }
+
 
