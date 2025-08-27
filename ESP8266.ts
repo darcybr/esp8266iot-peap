@@ -115,13 +115,8 @@ namespace ESP8266_IoT {
     //% pw.defl=your_pwd weight=95
     //% security.defl=your_name
     //% timeout.defl=your_name
-
-
-
-    // Don't mind me...
-
-
-    export function connectEAPWifi(ssid: string, method: number, identity: string,  user: string, pw: string, security: number, timeout: number) {
+// Thinking I might need to use strings for everything and then cast them as numbers before sending the string. 
+    export function connectEAPWifi(ssid: string, method: string, identity: string,  user: string, pw: string, security: string, timeout: string) {
             registerMsgHandler("WIFI DISCONNECT", () => wifi_connected = false)
             registerMsgHandler("WIFI GOT IP", () => wifi_connected = true)
             let retryCount = 3;
@@ -527,5 +522,6 @@ namespace ESP8266_IoT {
     }
 
 }
+
 
 
