@@ -121,7 +121,7 @@ namespace ESP8266_IoT {
             registerMsgHandler("WIFI GOT IP", () => wifi_connected = true)
             let retryCount = 3;
             while (true) {
-                sendAT(`AT+CWJEAP="${ssid}","${method}", "${identity}","${user}","${pw}", "${security}", "${timeout}"`) 
+                sendAT(`AT+CWJEAP="${ssid}",${method}, "${identity}","${user}","${pw}", ${security}, ${timeout}`) 
                 // connect to Wifi router
                 // From ESP32 list of AT Commands, but should apply.. 
                 // AT+CWJEAP=<"ssid">,<method>,<"identity">,<"username">,<"password">,<security>[,<jeap_timeout>]
@@ -522,6 +522,7 @@ namespace ESP8266_IoT {
     }
 
 }
+
 
 
 
